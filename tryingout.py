@@ -69,3 +69,5 @@ def what_harry_potter_character_are_you():
         else:
             st.info(f"It's a tie between: {', '.join(top_characters)}")
 
+if __name__ == "__main__":
+    what_harry_potter_character_are_you()
