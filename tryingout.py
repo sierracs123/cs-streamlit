@@ -76,12 +76,13 @@ def quiz_harry_potter():
 def quiz_cake():
     st.header("What Kind of Cake Are You?")
 
-    countcc = 0
-    countvc = 0
-    countcac = 0
-    countbc = 0
+    countcc = 0  # Chocolate Cake
+    countvc = 0  # Vanilla Cake
+    countcac = 0  # Carrot Cake
+    countbc = 0  # Birthday Cake
 
-    trait = st.radio("Best trait?", ['Sweetness', 'Sensibility', 'Elegance', 'Fun loving'], key="cake_trait")
+    trait = st.radio("Best trait?", 
+                     ['Sweetness', 'Sensibility', 'Elegance', 'Fun loving'], key="cake_trait")
     if trait == 'Sweetness':
         countcc += 1
     elif trait == 'Sensibility':
@@ -91,7 +92,8 @@ def quiz_cake():
     elif trait == 'Fun loving':
         countbc += 1
 
-    season = st.radio("Pick a season:", ['Fall', 'Winter', 'Spring', 'Summer'], key="cake_season")
+    season = st.radio("Pick a season:", 
+                      ['Fall', 'Winter', 'Spring', 'Summer'], key="cake_season")
     if season == 'Fall':
         countcc += 1
     elif season == 'Winter':
@@ -99,6 +101,39 @@ def quiz_cake():
     elif season == 'Spring':
         countcac += 1
     elif season == 'Summer':
+        countbc += 1
+
+    texture = st.radio("Pick a texture of cake:", 
+                       ['Moist', 'Smooth', 'Crunchy', 'Soft'], key="cake_texture")
+    if texture == 'Moist':
+        countcc += 1
+    elif texture == 'Smooth':
+        countvc += 1
+    elif texture == 'Crunchy':
+        countcac += 1
+    elif texture == 'Soft':
+        countbc += 1
+
+    drink = st.radio("What is your favorite drink?", 
+                     ['Soda', 'Smoothie', 'Coffee', 'Champagne'], key="cake_drink")
+    if drink == 'Soda':
+        countcc += 1
+    elif drink == 'Smoothie':
+        countvc += 1
+    elif drink == 'Coffee':
+        countcac += 1
+    elif drink == 'Champagne':
+        countbc += 1
+
+    topping = st.radio("Which dessert topping do you prefer?", 
+                       ['Chocolate Sauce', 'Whipped Cream', 'Chopped Nuts', 'Sprinkles'], key="cake_topping")
+    if topping == 'Chocolate Sauce':
+        countcc += 1
+    elif topping == 'Whipped Cream':
+        countvc += 1
+    elif topping == 'Chopped Nuts':
+        countcac += 1
+    elif topping == 'Sprinkles':
         countbc += 1
 
     if st.button("Submit Cake Quiz"):
@@ -117,9 +152,9 @@ def quiz_cake():
             cakes.append("Birthday Cake")
 
         if len(cakes) == 1:
-            st.success(f"You are most like a {cakes[0]}!")
+            st.success(f"You are most like a **{cakes[0]}**!")
         else:
-            st.info(f"It's a tie between: {', '.join(cakes)}")
+            st.info(f"It's a tie between: **{', '.join(cakes)}**")
 
 def quiz_what_pet():
     st.title("What Pet Should I Get? Quiz")
