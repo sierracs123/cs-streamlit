@@ -157,7 +157,7 @@ def quiz_cake():
             st.info(f"It's a tie between: **{', '.join(cakes)}**")
 
 def quiz_what_pet():
-    st.title("What Pet Should I Get? Quiz")
+    st.title("What Pet Should I Get Quiz")
 
     activity = st.radio("Pick an ideal weekend activity:", 
                         options=["Going on a hike (a)", "Napping (b)", "Singing karaoke (c)", "Reading (d)"],
