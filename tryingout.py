@@ -2,6 +2,112 @@ import streamlit as st
 
 st.set_page_config(page_title="Multipage Quiz App")
 
+import streamlit as st
+
+def what_disney_princess_are_you():
+    st.header("What Disney Princess Are You?")
+
+    countr = 0  # Rapunzel
+    countb = 0  # Belle
+    countc = 0  # Cinderella
+    countm = 0  # Moana
+
+    color = st.radio("Pick a color:", ['Green', 'Brown', 'Red', 'Blue'], key="princess_color")
+    if color == 'Green':
+        countr += 1
+    elif color == 'Brown':
+        countb += 1
+    elif color == 'Red':
+        countc += 1
+    elif color == 'Blue':
+        countm += 1
+
+    place = st.radio("Pick a place to live:", ['Village', 'Library', 'Cozy Home', 'House Boat'], key="princess_place")
+    if place == 'Village':
+        countr += 1
+    elif place == 'Library':
+        countb += 1
+    elif place == 'Cozy Home':
+        countc += 1
+    elif place == 'House Boat':
+        countm += 1
+
+    pet = st.radio("Pick a pet:", ['Bird', 'Cat', 'Puppy', 'Hamster'], key="princess_pet")
+    if pet == 'Bird':
+        countr += 1
+    elif pet == 'Cat':
+        countb += 1
+    elif pet == 'Puppy':
+        countc += 1
+    elif pet == 'Hamster':
+        countm += 1
+
+    jewelry = st.radio("Pick a kind of jewelry:", ['Tiara', 'Pearl Necklace', 'Diamond Earrings', 'Beaded Bracelet'], key="princess_jewelry")
+    if jewelry == 'Tiara':
+        countr += 1
+    elif jewelry == 'Pearl Necklace':
+        countb += 1
+    elif jewelry == 'Diamond Earrings':
+        countc += 1
+    elif jewelry == 'Beaded Bracelet':
+        countm += 1
+
+    flower = st.radio("Pick a flower:", ['Tulip', 'Pink Rose', 'Daisies', 'Hibiscus'], key="princess_flower")
+    if flower == 'Tulip':
+        countr += 1
+    elif flower == 'Pink Rose':
+        countb += 1
+    elif flower == 'Daisies':
+        countc += 1
+    elif flower == 'Hibiscus':
+        countm += 1
+
+    season = st.radio("Pick a season:", ['Spring', 'Fall', 'Winter', 'Summer'], key="princess_season")
+    if season == 'Spring':
+        countr += 1
+    elif season == 'Fall':
+        countb += 1
+    elif season == 'Winter':
+        countc += 1
+    elif season == 'Summer':
+        countm += 1
+
+    song = st.radio("Pick a song:", ['Baby', 'Wildflower', 'Denial is a River', 'Blinding Lights'], key="princess_song")
+    if song == 'Baby':
+        countr += 1
+    elif song == 'Wildflower':
+        countb += 1
+    elif song == 'Denial is a River':
+        countc += 1
+    elif song == 'Blinding Lights':
+        countm += 1
+
+    companion = st.radio("Pick a Disney princess companion:", ['Anna', 'Aurora', 'Tiana', 'Ariel'], key="princess_companion")
+    if companion == 'Anna':
+        countr += 1
+    elif companion == 'Aurora':
+        countb += 1
+    elif companion == 'Tiana':
+        countc += 1
+    elif companion == 'Ariel':
+        countm += 1
+
+    if st.button("Submit Princess Quiz"):
+        scores = {
+            "Rapunzel": countr,
+            "Belle": countb,
+            "Cinderella": countc,
+            "Moana": countm
+        }
+        max_score = max(scores.values())
+        top_princesses = [name for name, score in scores.items() if score == max_score]
+
+        if len(top_princesses) == 1:
+            st.success(f"You are most like **{top_princesses[0]}**!")
+        else:
+            st.info(f"It's a tie between: **{', '.join(top_princesses)}**")
+
+
 def quiz_harry_potter():
     st.header("Harry Potter Quiz")
 
