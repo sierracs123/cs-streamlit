@@ -7,7 +7,95 @@ quiz = st.sidebar.radio("Select a quiz:", [
     "What Pet Are You?",
     "Cake Personality Quiz",
     "What Disney Princess Are You?"
+    "What HP Character Are You?"
 ])
+
+def what_hp_character_are_you():
+    st.header("What HP Character Are You?")
+    countHP = 0
+    countRW = 0
+    countHG = 0
+    countDM = 0
+
+    q1 = st.radio(
+        "Pick your favorite class at Hogwarts:",
+        ['Defense Against the Dark Arts (a)', 'Lunch (b)', 'Transfiguration (c)', 'Potions (d)'],
+        key="hp_q1"
+    )
+    if q1.endswith("(a)"):
+        countHP += 1
+    elif q1.endswith("(b)"):
+        countRW += 1
+    elif q1.endswith("(c)"):
+        countHG += 1
+    elif q1.endswith("(d)"):
+        countDM += 1
+
+    q2 = st.radio(
+        "What is your biggest strength:",
+        ['Bravery (a)', 'Loyalty (b)', 'Persistence (c)', 'Ambition (d)'],
+        key="hp_q2"
+    )
+    if q2.endswith("(a)"):
+        countHP += 1
+    elif q2.endswith("(b)"):
+        countRW += 1
+    elif q2.endswith("(c)"):
+        countHG += 1
+    elif q2.endswith("(d)"):
+        countDM += 1
+
+    q3 = st.radio(
+        "What is your favorite activity at Hogwarts:",
+        ['Playing Quidditch (a)', 'Playing Wizard Chess (b)', 'Going to the Library (c)', 'Pranking Other Students (d)'],
+        key="hp_q3"
+    )
+    if q3.endswith("(a)"):
+        countHP += 1
+    elif q3.endswith("(b)"):
+        countRW += 1
+    elif q3.endswith("(c)"):
+        countHG += 1
+    elif q3.endswith("(d)"):
+        countDM += 1
+
+    q4 = st.radio(
+        "What is your favorite wizard candy:",
+        ["Chocolate Frogs (a)", "Bertie Bott's Every Flavor Beans (b)", "Sugar Quills (c)", "Fizzing Whizzbees (d)"],
+        key="hp_q4"
+    )
+    if q4.endswith("(a)"):
+        countHP += 1
+    elif q4.endswith("(b)"):
+        countRW += 1
+    elif q4.endswith("(c)"):
+        countHG += 1
+    elif q4.endswith("(d)"):
+        countDM += 1
+
+    if st.button("Submit Harry Potter Quiz"):
+        if (countHP > countRW) and (countHP > countHG) and (countHP > countDM):
+            st.success("Your character is Harry Potter!")
+        elif (countRW > countHP) and (countRW > countHG) and (countRW > countDM):
+            st.success("Your character is Ron Weasley!")
+        elif (countHG > countHP) and (countHG > countRW) and (countHG > countDM):
+            st.success("Your character is Hermione Granger!")
+        elif (countDM > countHP) and (countDM > countRW) and (countDM > countHG):
+            st.success("Your character is Draco Malfoy!")
+        elif (countHP == countRW) and (countHP > countHG) and (countHP > countDM):
+            st.info("It's a tie between Harry Potter and Ron Weasley!")
+        elif (countRW == countHG) and (countRW > countDM) and (countRW > countHP):
+            st.info("It's a tie between Ron Weasley and Hermione Granger!")
+        elif (countHG == countDM) and (countHG > countHP) and (countHG > countRW):
+            st.info("It's a tie between Hermione Granger and Draco Malfoy!")
+        elif (countDM == countHP) and (countDM > countRW) and (countDM > countHG):
+            st.info("It's a tie between Draco Malfoy and Harry Potter!")
+        elif (countHP == countRW == countHG) and (countHP > countDM):
+            st.info("It's a tie between Harry Potter, Ron Weasley, and Hermione Granger: The Golden Trio!")
+        elif (countRW == countHG == countDM) and (countRW > countHP):
+            st.info("It's a tie between Ron Weasley, Hermione Granger, and Draco Malfoy!")
+        else:
+            st.info("It's a complete tie!")
 
 def what_pet_are_you():
     st.header("What Pet Are You?")
