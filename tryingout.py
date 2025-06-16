@@ -220,7 +220,7 @@ def quiz_disney_princess():
     countc = 0  # Cinderella
     countm = 0  # Moana
 
-    color = st.radio("Pick a color:", ["green (a)", "brown (b)", "red (c)", "blue (d)"], key="dp_color")
+    color = st.radio("Pick a color:", ["green ", "brown ", "red ", "blue "], key="dp_color")
     if color.startswith("green"):
         countr += 1
     elif color.startswith("brown"):
@@ -230,7 +230,7 @@ def quiz_disney_princess():
     elif color.startswith("blue"):
         countm += 1
 
-    place = st.radio("Pick a place to live:", ["village (a)", "library (b)", "cozy home (c)", "house boat (d)"], key="dp_place")
+    place = st.radio("Pick a place to live:", ["village ", "library", "cozy home ", "house boat "], key="dp_place")
     if place.startswith("village"):
         countr += 1
     elif place.startswith("library"):
@@ -240,7 +240,7 @@ def quiz_disney_princess():
     elif place.startswith("house boat"):
         countm += 1
 
-    pet = st.radio("Pick a pet:", ["bird (a)", "cat (b)", "puppy (c)", "hamster (d)"], key="dp_pet")
+    pet = st.radio("Pick a pet:", ["bird ", "cat ", "puppy ", "hamster "], key="dp_pet")
     if pet.startswith("bird"):
         countr += 1
     elif pet.startswith("cat"):
@@ -250,7 +250,7 @@ def quiz_disney_princess():
     elif pet.startswith("hamster"):
         countm += 1
 
-    jewelry = st.radio("Pick a kind of jewelry:", ["tiara (a)", "pearl necklace (b)", "diamond earrings (c)", "beaded bracelet (d)"], key="dp_jewelry")
+    jewelry = st.radio("Pick a kind of jewelry:", ["tiara ", "pearl necklace ", "diamond earrings ", "beaded bracelet "], key="dp_jewelry")
     if jewelry.startswith("tiara"):
         countr += 1
     elif jewelry.startswith("pearl"):
@@ -260,7 +260,7 @@ def quiz_disney_princess():
     elif jewelry.startswith("beaded"):
         countm += 1
 
-    flower = st.radio("Pick a flower:", ["tulip (a)", "pink rose (b)", "daisies (c)", "hibiscus (d)"], key="dp_flower")
+    flower = st.radio("Pick a flower:", ["tulip (a)", "pink rose ", "daisies ", "hibiscus "], key="dp_flower")
     if flower.startswith("tulip"):
         countr += 1
     elif flower.startswith("pink rose"):
@@ -270,7 +270,7 @@ def quiz_disney_princess():
     elif flower.startswith("hibiscus"):
         countm += 1
 
-    season = st.radio("Pick a season:", ["spring (a)", "fall (b)", "winter (c)", "summer (d)"], key="dp_season")
+    season = st.radio("Pick a season:", ["spring ", "fall ", "winter ", "summer "], key="dp_season")
     if season.startswith("spring"):
         countr += 1
     elif season.startswith("fall"):
@@ -280,7 +280,7 @@ def quiz_disney_princess():
     elif season.startswith("summer"):
         countm += 1
 
-    song = st.radio("Pick a song:", ["baby (a)", "wildflower (b)", "denial is a river (c)", "blinding lights (d)"], key="dp_song")
+    song = st.radio("Pick a song:", ["baby ", "wildflower ", "denial is a river ", "blinding lights "], key="dp_song")
     if song.startswith("baby"):
         countr += 1
     elif song.startswith("wildflower"):
@@ -290,7 +290,7 @@ def quiz_disney_princess():
     elif song.startswith("blinding"):
         countm += 1
 
-    companion = st.radio("Pick a Disney princess companion:", ["Anna (a)", "Aurora (b)", "Tiana (c)", "Ariel (d)"], key="dp_companion")
+    companion = st.radio("Pick a Disney princess companion:", ["Anna ", "Aurora ", "Tiana ", "Ariel "], key="dp_companion")
     if companion.startswith("anna"):
         countr += 1
     elif companion.startswith("aurora"):
