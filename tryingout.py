@@ -1,78 +1,159 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="Multipage App"
-)
-st.sidebar.success("Select a Quiz")
+st.set_page_config(page_title="Multipage Quiz App")
 
-def what_harry_potter_character_are_you():
-    st.title("What Harry Potter Character Are You?")
+def quiz_harry_potter():
+    st.header("Harry Potter Quiz")
 
-    count = {"Harry Potter": 0, "Ron Weasley": 0, "Hermione Granger": 0, "Draco Malfoy": 0}
+    scores = {"Harry": 0, "Ron": 0, "Hermione": 0, "Draco": 0}
 
-    q1 = st.radio("Pick your favorite class at Hogwarts:", 
-                  ["Defense Against the Dark Arts", "Lunch", "Transfiguration", "Potions"])
+    q1 = st.radio("Favorite Hogwarts class?", 
+                  ["Defense Against the Dark Arts", "Lunch", "Transfiguration", "Potions"], key="hp_q1")
     if q1 == "Defense Against the Dark Arts":
-        count["Harry Potter"] += 1
+        scores["Harry"] += 1
     elif q1 == "Lunch":
-        count["Ron Weasley"] += 1
+        scores["Ron"] += 1
     elif q1 == "Transfiguration":
-        count["Hermione Granger"] += 1
+        scores["Hermione"] += 1
     elif q1 == "Potions":
-        count["Draco Malfoy"] += 1
+        scores["Draco"] += 1
 
-    q2 = st.radio("What is your biggest strength:", 
-                  ["Bravery", "Loyalty", "Persistence", "Ambition"])
+    q2 = st.radio("Biggest strength?", 
+                  ["Bravery", "Loyalty", "Persistence", "Ambition"], key="hp_q2")
     if q2 == "Bravery":
-        count["Harry Potter"] += 1
+        scores["Harry"] += 1
     elif q2 == "Loyalty":
-        count["Ron Weasley"] += 1
+        scores["Ron"] += 1
     elif q2 == "Persistence":
-        count["Hermione Granger"] += 1
+        scores["Hermione"] += 1
     elif q2 == "Ambition":
-        count["Draco Malfoy"] += 1
+        scores["Draco"] += 1
 
-    q3 = st.radio("Your favorite activity at Hogwarts:", 
-                  ["Playing Quidditch", "Playing Wizard Chess", "Going to the Library", "Pranking Other Students"])
-    if q3 == "Playing Quidditch":
-        count["Harry Potter"] += 1
-    elif q3 == "Playing Wizard Chess":
-        count["Ron Weasley"] += 1
-    elif q3 == "Going to the Library":
-        count["Hermione Granger"] += 1
-    elif q3 == "Pranking Other Students":
-        count["Draco Malfoy"] += 1
+    if st.button("Submit Harry Potter Quiz"):
+        st.session_state.hp_submitted = True
 
-    q4 = st.radio("Favorite wizard candy:", 
-                  ["Chocolate Frogs", "Every Flavor Beans", "Sugar Quills", "Fizzing Whizzbees"])
-    if q4 == "Chocolate Frogs":
-        count["Harry Potter"] += 1
-    elif q4 == "Every Flavor Beans":
-        count["Ron Weasley"] += 1
-    elif q4 == "Sugar Quills":
-        count["Hermione Granger"] += 1
-    elif q4 == "Fizzing Whizzbees":
-        count["Draco Malfoy"] += 1
-
-    q5 = st.radio("How do you handle stress:", 
-                  ["Face it", "Vent to friends", "Make a plan", "Pay someone to fix it"])
-    if q5 == "Face it":
-        count["Harry Potter"] += 1
-    elif q5 == "Vent to friends":
-        count["Ron Weasley"] += 1
-    elif q5 == "Make a plan":
-        count["Hermione Granger"] += 1
-    elif q5 == "Pay someone to fix it":
-        count["Draco Malfoy"] += 1
-
-    if st.button("Submit"):
-        max_score = max(count.values())
-        top_characters = [name for name, score in count.items() if score == max_score]
-
-        if len(top_characters) == 1:
-            st.success(f"You are most like **{top_characters[0]}**!")
+    if st.session_state.get("hp_submitted", False):
+        max_score = max(scores.values())
+        winners = [k for k, v in scores.items() if v == max_score]
+        if len(winners) == 1:
+            st.success(f"You are most like {winners[0]}!")
         else:
-            st.info(f"It's a tie between: {', '.join(top_characters)}")
+            st.info(f"It's a tie between: {', '.join(winners)}")
+
+def quiz_cake():
+    st.header("What Kind of Cake Are You?")
+
+    countcc = 0
+    countvc = 0
+    countcac = 0
+    countbc = 0
+
+    trait = st.radio("Best trait?", ['Sweetness', 'Sensibility', 'Elegance', 'Fun loving'], key="cake_trait")
+    if trait == 'Sweetness':
+        countcc += 1
+    elif trait == 'Sensibility':
+        countvc += 1
+    elif trait == 'Elegance':
+        countcac += 1
+    elif trait == 'Fun loving':
+        countbc += 1
+
+    season = st.radio("Pick a season:", ['Fall', 'Winter', 'Spring', 'Summer'], key="cake_season")
+    if season == 'Fall':
+        countcc += 1
+    elif season == 'Winter':
+        countvc += 1
+    elif season == 'Spring':
+        countcac += 1
+    elif season == 'Summer':
+        countbc += 1
+
+    if st.button("Submit Cake Quiz"):
+        st.session_state.cake_submitted = True
+
+    if st.session_state.get("cake_submitted", False):
+        max_score = max(countcc, countvc, countcac, countbc)
+        cakes = []
+        if countcc == max_score:
+            cakes.append("Chocolate Cake")
+        if countvc == max_score:
+            cakes.append("Vanilla Cake")
+        if countcac == max_score:
+            cakes.append("Carrot Cake")
+        if countbc == max_score:
+            cakes.append("Birthday Cake")
+
+        if len(cakes) == 1:
+            st.success(f"You are most like a {cakes[0]}!")
+        else:
+            st.info(f"It's a tie between: {', '.join(cakes)}")
+
+def quiz_what_pet():
+    st.title("What Pet Should I Get? Quiz")
+
+    activity = st.radio("Pick an ideal weekend activity:", 
+                        options=["Going on a hike (a)", "Napping (b)", "Singing karaoke (c)", "Reading (d)"],
+                        key="activity")
+    trait = st.radio("Your best trait is:", 
+                    options=["Loyalty (a)", "Independence (b)", "Cheerfulness (c)", "Calmness (d)"],
+                    key="trait")
+    time = st.radio("Your favorite time of day is:", 
+                    options=["Morning (a)", "Evening (b)", "Noon (c)", "Night (d)"],
+                    key="time")
+    timespent = st.radio("How much time do you have to spend with your pet a day:",
+                         options=["3+ hours (a)", "1 hour (b)", "30 mins (c)", "Not that much time (d)"],
+                         key="timespent")
+    place = st.radio("Pick a place to live:",
+                     options=["Suburban house with a backyard (a)", "Condo near a bookstore and cafe (b)", 
+                              "A cottage in the woods (c)", "An apartment in the city (d)"],
+                     key="place")
+
+    if st.button("Submit What Pet Quiz"):
+        countdog = 0
+        countcat = 0
+        countbird = 0
+        countfish = 0
+
+        def get_choice_letter(option):
+            return option[-2].lower()  # extracts letter before ')'
+
+        for answer in [activity, trait, time, timespent, place]:
+            choice = get_choice_letter(answer)
+            if choice == 'a':
+                countdog += 1
+            elif choice == 'b':
+                countcat += 1
+            elif choice == 'c':
+                countbird += 1
+            elif choice == 'd':
+                countfish += 1
+
+        scores = {
+            "Dog": countdog,
+            "Cat": countcat,
+            "Bird": countbird,
+            "Fish": countfish,
+        }
+        max_score = max(scores.values())
+        winners = [pet for pet, score in scores.items() if score == max_score]
+
+        if len(winners) == 1:
+            st.success(f"Your dream pet is a **{winners[0]}**!")
+        else:
+            tied_pets = ", ".join(winners)
+            st.success(f"It's a tie between: **{tied_pets}**!")
+
+def main():
+    st.sidebar.title("Quiz Navigation")
+    quiz_choice = st.sidebar.radio("Choose a quiz to take:", 
+                                   ("Harry Potter Quiz", "Cake Quiz", "What Pet Should I Get?"))
+
+    if quiz_choice == "Harry Potter Quiz":
+        quiz_harry_potter()
+    elif quiz_choice == "Cake Quiz":
+        quiz_cake()
+    elif quiz_choice == "What Pet Should I Get?":
+        quiz_what_pet()
 
 if __name__ == "__main__":
-    what_harry_potter_character_are_you()
+    main()
