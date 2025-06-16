@@ -211,10 +211,81 @@ def quiz_what_pet():
             tied_pets = ", ".join(winners)
             st.success(f"It's a tie between: **{tied_pets}**!")
 
+def quiz_disney_princess():
+    st.header("Which Disney Princess Are You?")
+
+    scores = {"Ariel": 0, "Belle": 0, "Cinderella": 0, "Mulan": 0}
+
+    q1 = st.radio("Favorite hobby?", 
+                  ["Singing", "Reading", "Dancing", "Training"], key="dp_q1")
+    if q1 == "Singing":
+        scores["Ariel"] += 1
+    elif q1 == "Reading":
+        scores["Belle"] += 1
+    elif q1 == "Dancing":
+        scores["Cinderella"] += 1
+    elif q1 == "Training":
+        scores["Mulan"] += 1
+
+    q2 = st.radio("Preferred personality trait?", 
+                  ["Curious", "Intelligent", "Kind", "Brave"], key="dp_q2")
+    if q2 == "Curious":
+        scores["Ariel"] += 1
+    elif q2 == "Intelligent":
+        scores["Belle"] += 1
+    elif q2 == "Kind":
+        scores["Cinderella"] += 1
+    elif q2 == "Brave":
+        scores["Mulan"] += 1
+
+    q3 = st.radio("Favorite type of adventure?", 
+                  ["Exploring the sea", "Going to the library", "Attending a royal ball", "Battling foes"], key="dp_q3")
+    if q3 == "Exploring the sea":
+        scores["Ariel"] += 1
+    elif q3 == "Going to the library":
+        scores["Belle"] += 1
+    elif q3 == "Attending a royal ball":
+        scores["Cinderella"] += 1
+    elif q3 == "Battling foes":
+        scores["Mulan"] += 1
+
+    q4 = st.radio("Choose a favorite color:", 
+                  ["Turquoise", "Yellow", "Blue", "Red"], key="dp_q4")
+    if q4 == "Turquoise":
+        scores["Ariel"] += 1
+    elif q4 == "Yellow":
+        scores["Belle"] += 1
+    elif q4 == "Blue":
+        scores["Cinderella"] += 1
+    elif q4 == "Red":
+        scores["Mulan"] += 1
+
+    q5 = st.radio("What's most important to you?", 
+                  ["Freedom", "Knowledge", "Kindness", "Honor"], key="dp_q5")
+    if q5 == "Freedom":
+        scores["Ariel"] += 1
+    elif q5 == "Knowledge":
+        scores["Belle"] += 1
+    elif q5 == "Kindness":
+        scores["Cinderella"] += 1
+    elif q5 == "Honor":
+        scores["Mulan"] += 1
+
+    if st.button("Submit Disney Princess Quiz"):
+        st.session_state.dp_submitted = True
+
+    if st.session_state.get("dp_submitted", False):
+        max_score = max(scores.values())
+        winners = [k for k, v in scores.items() if v == max_score]
+        if len(winners) == 1:
+            st.success(f"You are most like **{winners[0]}**!")
+        else:
+            st.info(f"It's a tie between: **{', '.join(winners)}**")
+
 def main():
     st.sidebar.title("Quiz Navigation")
     quiz_choice = st.sidebar.radio("Choose a quiz to take:", 
-                                   ("Harry Potter Quiz", "Cake Quiz", "What Pet Should I Get?"))
+                                   ("Harry Potter Quiz", "Cake Quiz", "What Pet Should I Get?", "Disney Princess Quiz"))
 
     if quiz_choice == "Harry Potter Quiz":
         quiz_harry_potter()
@@ -222,6 +293,8 @@ def main():
         quiz_cake()
     elif quiz_choice == "What Pet Should I Get?":
         quiz_what_pet()
+    elif quiz_choice == "Disney Princess Quiz":
+        quiz_disney_princess()
 
 if __name__ == "__main__":
     main()
