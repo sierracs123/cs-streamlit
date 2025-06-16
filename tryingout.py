@@ -7,65 +7,14 @@ quiz = st.sidebar.radio("Select a quiz:", [
     "What Pet Should I Get?",
     "Cake Personality Quiz",
     "What Disney Princess Are You?"
-    "What HP Character Are You?"
+    "What Harry Potter Character Are You?"
 ])
 
-
+def what_hp_character_are_you():
+    
 
 def what_pet_should_i_get():
-    st.title("What Pet Should I Get? Quiz")
 
-    activity = st.radio("Pick an ideal weekend activity:", 
-                        options=["Going on a hike (a)", "Napping (b)", "Singing karaoke (c)", "Reading (d)"],
-                        key="activity")
-    trait = st.radio("Your best trait is:", 
-                    options=["Loyalty (a)", "Independence (b)", "Cheerfulness (c)", "Calmness (d)"],
-                    key="trait")
-    time = st.radio("Your favorite time of day is:", 
-                    options=["Morning (a)", "Evening (b)", "Noon (c)", "Night (d)"],
-                    key="time")
-    timespent = st.radio("How much time do you have to spend with your pet a day:",
-                         options=["3+ hours (a)", "1 hour (b)", "30 mins (c)", "Not that much time (d)"],
-                         key="timespent")
-    place = st.radio("Pick a place to live:",
-                     options=["Suburban house with a backyard (a)", "Condo near a bookstore and cafe (b)", 
-                              "A cottage in the woods (c)", "An apartment in the city (d)"],
-                     key="place")
-
-    if st.button("Submit What Pet Quiz"):
-        countdog = 0
-        countcat = 0
-        countbird = 0
-        countfish = 0
-
-        def get_choice_letter(option):
-            return option[-2].lower()  # extracts letter before ')'
-
-        for answer in [activity, trait, time, timespent, place]:
-            choice = get_choice_letter(answer)
-            if choice == 'a':
-                countdog += 1
-            elif choice == 'b':
-                countcat += 1
-            elif choice == 'c':
-                countbird += 1
-            elif choice == 'd':
-                countfish += 1
-
-        scores = {
-            "Dog": countdog,
-            "Cat": countcat,
-            "Bird": countbird,
-            "Fish": countfish,
-        }
-        max_score = max(scores.values())
-        winners = [pet for pet, score in scores.items() if score == max_score]
-
-        if len(winners) == 1:
-            st.success(f"Your dream pet is a **{winners[0]}**!")
-        else:
-            tied_pets = ", ".join(winners)
-            st.success(f"It's a tie between: **{tied_pets}**!")
 
 def cake_quiz():
     st.header("Cake Personality Quiz")
@@ -258,3 +207,5 @@ elif quiz == "Cake Personality Quiz":
     cake_quiz()
 elif quiz == "What Disney Princess Are You?":
     what_disney_princess_are_you()
+elif quiz == "What Harry Potter Character Are You?":
+    what_hp_character_are_you()
