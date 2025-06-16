@@ -29,6 +29,39 @@ def quiz_harry_potter():
     elif q2 == "Ambition":
         scores["Draco"] += 1
 
+    q3 = st.radio("Favorite activity at Hogwarts?", 
+                  ["Playing Quidditch", "Playing Wizard Chess", "Going to the Library", "Pranking Other Students"], key="hp_q3")
+    if q3 == "Playing Quidditch":
+        scores["Harry"] += 1
+    elif q3 == "Playing Wizard Chess":
+        scores["Ron"] += 1
+    elif q3 == "Going to the Library":
+        scores["Hermione"] += 1
+    elif q3 == "Pranking Other Students":
+        scores["Draco"] += 1
+
+    q4 = st.radio("Favorite wizard candy?", 
+                  ["Chocolate Frogs", "Bertie Bott's Every Flavor Beans", "Sugar Quills", "Fizzing Whizzbees"], key="hp_q4")
+    if q4 == "Chocolate Frogs":
+        scores["Harry"] += 1
+    elif q4 == "Bertie Bott's Every Flavor Beans":
+        scores["Ron"] += 1
+    elif q4 == "Sugar Quills":
+        scores["Hermione"] += 1
+    elif q4 == "Fizzing Whizzbees":
+        scores["Draco"] += 1
+
+    q5 = st.radio("How do you handle problems and stress?", 
+                  ["Face it", "Vent to friends", "Make a detailed plan", "Pay someone to fix it"], key="hp_q5")
+    if q5 == "Face it":
+        scores["Harry"] += 1
+    elif q5 == "Vent to friends":
+        scores["Ron"] += 1
+    elif q5 == "Make a detailed plan":
+        scores["Hermione"] += 1
+    elif q5 == "Pay someone to fix it":
+        scores["Draco"] += 1
+
     if st.button("Submit Harry Potter Quiz"):
         st.session_state.hp_submitted = True
 
@@ -36,9 +69,9 @@ def quiz_harry_potter():
         max_score = max(scores.values())
         winners = [k for k, v in scores.items() if v == max_score]
         if len(winners) == 1:
-            st.success(f"You are most like {winners[0]}!")
+            st.success(f"You are most like **{winners[0]}**!")
         else:
-            st.info(f"It's a tie between: {', '.join(winners)}")
+            st.info(f"It's a tie between: **{', '.join(winners)}**")
 
 def quiz_cake():
     st.header("What Kind of Cake Are You?")
