@@ -214,73 +214,119 @@ def quiz_what_pet():
 def quiz_disney_princess():
     st.header("Which Disney Princess Are You?")
 
-    scores = {"Ariel": 0, "Belle": 0, "Cinderella": 0, "Mulan": 0}
+    # Initialize counts
+    countr = 0  # Rapunzel
+    countb = 0  # Belle
+    countc = 0  # Cinderella
+    countm = 0  # Moana
 
-    q1 = st.radio("Favorite hobby?", 
-                  ["Singing", "Reading", "Dancing", "Training"], key="dp_q1")
-    if q1 == "Singing":
-        scores["Ariel"] += 1
-    elif q1 == "Reading":
-        scores["Belle"] += 1
-    elif q1 == "Dancing":
-        scores["Cinderella"] += 1
-    elif q1 == "Training":
-        scores["Mulan"] += 1
+    color = st.radio("Pick a color:", ["green (a)", "brown (b)", "red (c)", "blue (d)"], key="dp_color")
+    if color.startswith("green"):
+        countr += 1
+    elif color.startswith("brown"):
+        countb += 1
+    elif color.startswith("red"):
+        countc += 1
+    elif color.startswith("blue"):
+        countm += 1
 
-    q2 = st.radio("Preferred personality trait?", 
-                  ["Curious", "Intelligent", "Kind", "Brave"], key="dp_q2")
-    if q2 == "Curious":
-        scores["Ariel"] += 1
-    elif q2 == "Intelligent":
-        scores["Belle"] += 1
-    elif q2 == "Kind":
-        scores["Cinderella"] += 1
-    elif q2 == "Brave":
-        scores["Mulan"] += 1
+    place = st.radio("Pick a place to live:", ["village (a)", "library (b)", "cozy home (c)", "house boat (d)"], key="dp_place")
+    if place.startswith("village"):
+        countr += 1
+    elif place.startswith("library"):
+        countb += 1
+    elif place.startswith("cozy"):
+        countc += 1
+    elif place.startswith("house boat"):
+        countm += 1
 
-    q3 = st.radio("Favorite type of adventure?", 
-                  ["Exploring the sea", "Going to the library", "Attending a royal ball", "Battling foes"], key="dp_q3")
-    if q3 == "Exploring the sea":
-        scores["Ariel"] += 1
-    elif q3 == "Going to the library":
-        scores["Belle"] += 1
-    elif q3 == "Attending a royal ball":
-        scores["Cinderella"] += 1
-    elif q3 == "Battling foes":
-        scores["Mulan"] += 1
+    pet = st.radio("Pick a pet:", ["bird (a)", "cat (b)", "puppy (c)", "hamster (d)"], key="dp_pet")
+    if pet.startswith("bird"):
+        countr += 1
+    elif pet.startswith("cat"):
+        countb += 1
+    elif pet.startswith("puppy"):
+        countc += 1
+    elif pet.startswith("hamster"):
+        countm += 1
 
-    q4 = st.radio("Choose a favorite color:", 
-                  ["Turquoise", "Yellow", "Blue", "Red"], key="dp_q4")
-    if q4 == "Turquoise":
-        scores["Ariel"] += 1
-    elif q4 == "Yellow":
-        scores["Belle"] += 1
-    elif q4 == "Blue":
-        scores["Cinderella"] += 1
-    elif q4 == "Red":
-        scores["Mulan"] += 1
+    jewelry = st.radio("Pick a kind of jewelry:", ["tiara (a)", "pearl necklace (b)", "diamond earrings (c)", "beaded bracelet (d)"], key="dp_jewelry")
+    if jewelry.startswith("tiara"):
+        countr += 1
+    elif jewelry.startswith("pearl"):
+        countb += 1
+    elif jewelry.startswith("diamond"):
+        countc += 1
+    elif jewelry.startswith("beaded"):
+        countm += 1
 
-    q5 = st.radio("What's most important to you?", 
-                  ["Freedom", "Knowledge", "Kindness", "Honor"], key="dp_q5")
-    if q5 == "Freedom":
-        scores["Ariel"] += 1
-    elif q5 == "Knowledge":
-        scores["Belle"] += 1
-    elif q5 == "Kindness":
-        scores["Cinderella"] += 1
-    elif q5 == "Honor":
-        scores["Mulan"] += 1
+    flower = st.radio("Pick a flower:", ["tulip (a)", "pink rose (b)", "daisies (c)", "hibiscus (d)"], key="dp_flower")
+    if flower.startswith("tulip"):
+        countr += 1
+    elif flower.startswith("pink rose"):
+        countb += 1
+    elif flower.startswith("daisies"):
+        countc += 1
+    elif flower.startswith("hibiscus"):
+        countm += 1
+
+    season = st.radio("Pick a season:", ["spring (a)", "fall (b)", "winter (c)", "summer (d)"], key="dp_season")
+    if season.startswith("spring"):
+        countr += 1
+    elif season.startswith("fall"):
+        countb += 1
+    elif season.startswith("winter"):
+        countc += 1
+    elif season.startswith("summer"):
+        countm += 1
+
+    song = st.radio("Pick a song:", ["baby (a)", "wildflower (b)", "denial is a river (c)", "blinding lights (d)"], key="dp_song")
+    if song.startswith("baby"):
+        countr += 1
+    elif song.startswith("wildflower"):
+        countb += 1
+    elif song.startswith("denial"):
+        countc += 1
+    elif song.startswith("blinding"):
+        countm += 1
+
+    companion = st.radio("Pick a Disney princess companion:", ["Anna (a)", "Aurora (b)", "Tiana (c)", "Ariel (d)"], key="dp_companion")
+    if companion.startswith("anna"):
+        countr += 1
+    elif companion.startswith("aurora"):
+        countb += 1
+    elif companion.startswith("tiana"):
+        countc += 1
+    elif companion.startswith("ariel"):
+        countm += 1
 
     if st.button("Submit Disney Princess Quiz"):
         st.session_state.dp_submitted = True
 
     if st.session_state.get("dp_submitted", False):
-        max_score = max(scores.values())
-        winners = [k for k, v in scores.items() if v == max_score]
+        # Determine winner with your tie logic
+        max_count = max(countr, countb, countc, countm)
+
+        # Collect princesses with max score
+        winners = []
+        if countr == max_count:
+            winners.append("Rapunzel")
+        if countb == max_count:
+            winners.append("Belle")
+        if countc == max_count:
+            winners.append("Cinderella")
+        if countm == max_count:
+            winners.append("Moana")
+
+        # Tie message logic (same as your original)
         if len(winners) == 1:
-            st.success(f"You are most like **{winners[0]}**!")
+            st.success(f"Your Disney princess is **{winners[0]}**!")
+        elif len(winners) == 2:
+            st.info(f"It's a tie between **{winners[0]}** and **{winners[1]}**!")
+        elif len(winners) == 3:
+            st.info(f"It's a tie between **{', '.join(winners)}**!")
         else:
-            st.info(f"It's a tie between: **{', '.join(winners)}**")
+            st.info("It's a tie between all princesses!")
 
 def main():
     st.sidebar.title("Quiz Navigation")
