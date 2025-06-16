@@ -12,10 +12,8 @@ quiz = st.sidebar.radio("Select a quiz:", [
 
 def what_hp_character_are_you():
     
-
 def what_pet_should_i_get():
     
-
 def cake_quiz():
     st.header("Cake Personality Quiz")
 
