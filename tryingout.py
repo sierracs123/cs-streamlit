@@ -16,12 +16,35 @@ def what_pet_are_you():
 def cake_quiz():
     st.header("Cake Personality Quiz")
 
-    countcc = 0
-    countvc = 0
-    countcac = 0
-    countbc = 0
+    countcc = 0  # Chocolate Cake
+    countvc = 0  # Vanilla Cake
+    countcac = 0  # Carrot Cake
+    countbc = 0  # Birthday Cake
 
-    texture = st.radio("Pick a texture of cake:", ['Moist', 'Smooth', 'Crunchy', 'Soft'], key="cake_texture")
+    trait = st.radio("Best trait?", 
+                     ['Sweetness', 'Sensibility', 'Elegance', 'Fun loving'], key="cake_trait")
+    if trait == 'Sweetness':
+        countcc += 1
+    elif trait == 'Sensibility':
+        countvc += 1
+    elif trait == 'Elegance':
+        countcac += 1
+    elif trait == 'Fun loving':
+        countbc += 1
+
+    season = st.radio("Pick a season:", 
+                      ['Fall', 'Winter', 'Spring', 'Summer'], key="cake_season")
+    if season == 'Fall':
+        countcc += 1
+    elif season == 'Winter':
+        countvc += 1
+    elif season == 'Spring':
+        countcac += 1
+    elif season == 'Summer':
+        countbc += 1
+
+    texture = st.radio("Pick a texture of cake:", 
+                       ['Moist', 'Smooth', 'Crunchy', 'Soft'], key="cake_texture")
     if texture == 'Moist':
         countcc += 1
     elif texture == 'Smooth':
@@ -31,7 +54,8 @@ def cake_quiz():
     elif texture == 'Soft':
         countbc += 1
 
-    drink = st.radio("What is your favorite drink:", ['Soda', 'Smoothie', 'Coffee', 'Champagne'], key="cake_drink")
+    drink = st.radio("What is your favorite drink?", 
+                     ['Soda', 'Smoothie', 'Coffee', 'Champagne'], key="cake_drink")
     if drink == 'Soda':
         countcc += 1
     elif drink == 'Smoothie':
@@ -41,7 +65,8 @@ def cake_quiz():
     elif drink == 'Champagne':
         countbc += 1
 
-    topping = st.radio("Which dessert topping do you prefer:", ['Chocolate Sauce', 'Whipped Cream', 'Chopped Nuts', 'Sprinkles'], key="cake_topping")
+    topping = st.radio("Which dessert topping do you prefer?", 
+                       ['Chocolate Sauce', 'Whipped Cream', 'Chopped Nuts', 'Sprinkles'], key="cake_topping")
     if topping == 'Chocolate Sauce':
         countcc += 1
     elif topping == 'Whipped Cream':
@@ -52,18 +77,24 @@ def cake_quiz():
         countbc += 1
 
     if st.button("Submit Cake Quiz"):
-        scores = {
-            "Chocolate Cake": countcc,
-            "Vanilla Cake": countvc,
-            "Carrot Cake": countcac,
-            "Birthday Cake": countbc
-        }
-        top = max(scores.values())
-        results = [k for k, v in scores.items() if v == top]
-        if len(results) == 1:
-            st.success(f"You are most like **{results[0]}**!")
+        st.session_state.cake_submitted = True
+
+    if st.session_state.get("cake_submitted", False):
+        max_score = max(countcc, countvc, countcac, countbc)
+        cakes = []
+        if countcc == max_score:
+            cakes.append("Chocolate Cake")
+        if countvc == max_score:
+            cakes.append("Vanilla Cake")
+        if countcac == max_score:
+            cakes.append("Carrot Cake")
+        if countbc == max_score:
+            cakes.append("Birthday Cake")
+
+        if len(cakes) == 1:
+            st.success(f"You are most like a **{cakes[0]}**!")
         else:
-            st.info(f"It's a tie between: **{', '.join(results)}**")
+            st.info(f"It's a tie between: **{', '.join(cakes)}**")
 
 def what_disney_princess_are_you():
     st.header("What Disney Princess Are You?")
