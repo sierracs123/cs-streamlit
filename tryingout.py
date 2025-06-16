@@ -145,14 +145,16 @@ def quiz_what_pet():
 
 def main():
     st.sidebar.title("Quiz Navigation")
-    quiz_choice = st.sidebar.radio("Choose a quiz to take:", 
-                                   ("Harry Potter Quiz", "Cake Quiz", "What Pet Should I Get?"))
+    quiz_choice = st.sidebar.radio(
+        "Choose a quiz to take:",
+        ("Harry Potter Quiz", "Cake Personality Quiz", "What Pet Should I Get? Quiz")
+    )
 
     if quiz_choice == "Harry Potter Quiz":
         quiz_harry_potter()
-    elif quiz_choice == "Cake Quiz":
+    elif quiz_choice == "Cake Personality Quiz":
         quiz_cake()
-    elif quiz_choice == "What Pet Should I Get?":
+    elif quiz_choice == "What Pet Should I Get? Quiz":
         quiz_what_pet()
 
 if __name__ == "__main__":
