@@ -4,102 +4,68 @@ st.set_page_config(page_title="Fun Personality Quizzes", page_icon="🧠")
 
 st.sidebar.title("Choose a Quiz")
 quiz = st.sidebar.radio("Select a quiz:", [
-    "What Pet Are You?",
+    "What Pet Should I Get?",
     "Cake Personality Quiz",
     "What Disney Princess Are You?"
     "What HP Character Are You?"
 ])
 
-def what_hp_character_are_you():
-    st.header("What HP Character Are You?")
-    countHP = 0
-    countRW = 0
-    countHG = 0
-    countDM = 0
 
-    q1 = st.radio(
-        "Pick your favorite class at Hogwarts:",
-        ['Defense Against the Dark Arts (a)', 'Lunch (b)', 'Transfiguration (c)', 'Potions (d)'],
-        key="hp_q1"
-    )
-    if q1.endswith("(a)"):
-        countHP += 1
-    elif q1.endswith("(b)"):
-        countRW += 1
-    elif q1.endswith("(c)"):
-        countHG += 1
-    elif q1.endswith("(d)"):
-        countDM += 1
 
-    q2 = st.radio(
-        "What is your biggest strength:",
-        ['Bravery (a)', 'Loyalty (b)', 'Persistence (c)', 'Ambition (d)'],
-        key="hp_q2"
-    )
-    if q2.endswith("(a)"):
-        countHP += 1
-    elif q2.endswith("(b)"):
-        countRW += 1
-    elif q2.endswith("(c)"):
-        countHG += 1
-    elif q2.endswith("(d)"):
-        countDM += 1
+def quiz_what_pet_should_i_get():
+    st.header("What Pet Should I Get? Quiz")
 
-    q3 = st.radio(
-        "What is your favorite activity at Hogwarts:",
-        ['Playing Quidditch (a)', 'Playing Wizard Chess (b)', 'Going to the Library (c)', 'Pranking Other Students (d)'],
-        key="hp_q3"
-    )
-    if q3.endswith("(a)"):
-        countHP += 1
-    elif q3.endswith("(b)"):
-        countRW += 1
-    elif q3.endswith("(c)"):
-        countHG += 1
-    elif q3.endswith("(d)"):
-        countDM += 1
+    activity = st.radio("Pick an ideal weekend activity:", 
+                        options=["Going on a hike (a)", "Napping (b)", "Singing karaoke (c)", "Reading (d)"],
+                        key="activity")
+    trait = st.radio("Your best trait is:", 
+                    options=["Loyalty (a)", "Independence (b)", "Cheerfulness (c)", "Calmness (d)"],
+                    key="trait")
+    time = st.radio("Your favorite time of day is:", 
+                    options=["Morning (a)", "Evening (b)", "Noon (c)", "Night (d)"],
+                    key="time")
+    timespent = st.radio("How much time do you have to spend with your pet a day:",
+                         options=["3+ hours (a)", "1 hour (b)", "30 mins (c)", "Not that much time (d)"],
+                         key="timespent")
+    place = st.radio("Pick a place to live:",
+                     options=["Suburban house with a backyard (a)", "Condo near a bookstore and cafe (b)", 
+                              "A cottage in the woods (c)", "An apartment in the city (d)"],
+                     key="place")
 
-    q4 = st.radio(
-        "What is your favorite wizard candy:",
-        ["Chocolate Frogs (a)", "Bertie Bott's Every Flavor Beans (b)", "Sugar Quills (c)", "Fizzing Whizzbees (d)"],
-        key="hp_q4"
-    )
-    if q4.endswith("(a)"):
-        countHP += 1
-    elif q4.endswith("(b)"):
-        countRW += 1
-    elif q4.endswith("(c)"):
-        countHG += 1
-    elif q4.endswith("(d)"):
-        countDM += 1
+    if st.button("Submit What Pet Quiz"):
+        countdog = 0
+        countcat = 0
+        countbird = 0
+        countfish = 0
 
-    if st.button("Submit Harry Potter Quiz"):
-        if (countHP > countRW) and (countHP > countHG) and (countHP > countDM):
-            st.success("Your character is Harry Potter!")
-        elif (countRW > countHP) and (countRW > countHG) and (countRW > countDM):
-            st.success("Your character is Ron Weasley!")
-        elif (countHG > countHP) and (countHG > countRW) and (countHG > countDM):
-            st.success("Your character is Hermione Granger!")
-        elif (countDM > countHP) and (countDM > countRW) and (countDM > countHG):
-            st.success("Your character is Draco Malfoy!")
-        elif (countHP == countRW) and (countHP > countHG) and (countHP > countDM):
-            st.info("It's a tie between Harry Potter and Ron Weasley!")
-        elif (countRW == countHG) and (countRW > countDM) and (countRW > countHP):
-            st.info("It's a tie between Ron Weasley and Hermione Granger!")
-        elif (countHG == countDM) and (countHG > countHP) and (countHG > countRW):
-            st.info("It's a tie between Hermione Granger and Draco Malfoy!")
-        elif (countDM == countHP) and (countDM > countRW) and (countDM > countHG):
-            st.info("It's a tie between Draco Malfoy and Harry Potter!")
-        elif (countHP == countRW == countHG) and (countHP > countDM):
-            st.info("It's a tie between Harry Potter, Ron Weasley, and Hermione Granger: The Golden Trio!")
-        elif (countRW == countHG == countDM) and (countRW > countHP):
-            st.info("It's a tie between Ron Weasley, Hermione Granger, and Draco Malfoy!")
+        def get_choice_letter(option):
+            return option[-2].lower()  # extracts letter before ')'
+
+        for answer in [activity, trait, time, timespent, place]:
+            choice = get_choice_letter(answer)
+            if choice == 'a':
+                countdog += 1
+            elif choice == 'b':
+                countcat += 1
+            elif choice == 'c':
+                countbird += 1
+            elif choice == 'd':
+                countfish += 1
+
+        scores = {
+            "Dog": countdog,
+            "Cat": countcat,
+            "Bird": countbird,
+            "Fish": countfish,
+        }
+        max_score = max(scores.values())
+        winners = [pet for pet, score in scores.items() if score == max_score]
+
+        if len(winners) == 1:
+            st.success(f"Your dream pet is a **{winners[0]}**!")
         else:
-            st.info("It's a complete tie!")
-
-def what_pet_are_you():
-    st.header("What Pet Are You?")
-    # Your pet quiz can go here
+            tied_pets = ", ".join(winners)
+            st.success(f"It's a tie between: **{tied_pets}**!")
 
 def cake_quiz():
     st.header("Cake Personality Quiz")
