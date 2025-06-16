@@ -12,8 +12,8 @@ quiz = st.sidebar.radio("Select a quiz:", [
 
 
 
-def quiz_what_pet_should_i_get():
-    st.header("What Pet Should I Get? Quiz")
+def what_pet_should_i_get():
+    st.title("What Pet Should I Get? Quiz")
 
     activity = st.radio("Pick an ideal weekend activity:", 
                         options=["Going on a hike (a)", "Napping (b)", "Singing karaoke (c)", "Reading (d)"],
